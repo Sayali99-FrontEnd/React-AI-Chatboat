@@ -1,11 +1,16 @@
-import { useState} from "react";
+import { useState } from "react";
 import styles from "./App.module.css";
 import {Chat} from "./components/Chat/Chat"
 import { Controls } from "./components/Controls/Contols";
 
 function App() {
   
-  const [ messages, setMessages] = useState(MESSAGES)
+  const [ messages, setMessages] = useState([])
+  
+  function handleContentSend(content){
+    setMessages((prevMessages) => [...prevMessages, {content, role: "user"}])
+  }
+  
 
   return (
     <div className={styles.App}>
@@ -16,44 +21,12 @@ function App() {
      <div className={styles.ChatContainer}>
         <Chat messages = {messages} />
      </div>
-        <Controls />
+        <Controls onSend={handleContentSend}/>
     </div>
   )
 }
 
-const MESSAGES = [
-  {
-    role: "user",
-    content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde dicta ducimus, incidunt, asperiores modi fugit facere nemo similique atque quo culpa? Nihil tenetur quod quas odio veritatis quasi, in vel?"
-  },
-  {
-    role: "assistant",
-    content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde dicta ducimus, incidunt, asperiores modi fugit facere nemo similique atque quo culpa? Nihil tenetur quod quas odio veritatis quasi, in vel?"
-  },
-  {
-    role: "user",
-    content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde dicta ducimus, incidunt, asperiores modi fugit facere nemo similique atque quo culpa? Nihil tenetur quod quas odio veritatis quasi, in vel?"
-  },
-  {
-    role: "assistant",
-    content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde dicta ducimus, incidunt, asperiores modi fugit facere nemo similique atque quo culpa? Nihil tenetur quod quas odio veritatis quasi, in vel?"
-  },
-  {
-    role: "user",
-    content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde dicta ducimus, incidunt, asperiores modi fugit facere nemo similique atque quo culpa? Nihil tenetur quod quas odio veritatis quasi, in vel?"
-  },
-  {
-    role: "assistant",
-    content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde dicta ducimus, incidunt, asperiores modi fugit facere nemo similique atque quo culpa? Nihil tenetur quod quas odio veritatis quasi, in vel?"
-  },  {
-    role: "user",
-    content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde dicta ducimus, incidunt, asperiores modi fugit facere nemo similique atque quo culpa? Nihil tenetur quod quas odio veritatis quasi, in vel?"
-  },
-  {
-    role: "assistant",
-    content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde dicta ducimus, incidunt, asperiores modi fugit facere nemo similique atque quo culpa? Nihil tenetur quod quas odio veritatis quasi, in vel?"
-  }
-]
+
 
 
 export default App
